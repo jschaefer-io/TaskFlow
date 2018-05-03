@@ -1,0 +1,23 @@
+{
+    "name": "taskflow",
+    "version": "1.0.0",
+    "description": "Interactive Process Mapper",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "npx tsc -pretty",
+        "watch": "npx tsc -w --pretty"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jschaefer-io/TaskFlow.git"
+    },
+    "author": "Jannik Schäfer <me@jschaefer.io>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jschaefer-io/TaskFlow/issues"
+    },
+    "homepage": "https://github.com/jschaefer-io/TaskFlow#readme",
+    "devDependencies": {
+        "typescript": "^2.8.3"
+    }
+}
