@@ -1,13 +1,13 @@
 {
     "compilerOptions": {
         "target": "es6",
-        "module": "commonjs",
-//        "lib": [
-//            "es5",
-//            "es6",
-//            "dom"
-//        ],
-        "outDir": "./dist",
+        "module": "amd",
+        "lib": [
+            "es5",
+            "es6",
+            "dom"
+        ],
+        "outDir": "./build",
         "rootDir": "./src",
         "strict": true,
         "esModuleInterop": true
