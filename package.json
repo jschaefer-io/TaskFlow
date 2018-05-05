@@ -4,8 +4,8 @@
     "description": "Interactive Process Mapper",
     "main": "dist/index.js",
     "scripts": {
-        "build": "npx tsc -pretty",
-        "watch": "npx tsc -w --pretty"
+        "build": "tsc --pretty",
+        "watch": "tsc -w --pretty"
     },
     "repository": {
         "type": "git",
@@ -19,5 +19,9 @@
     "homepage": "https://github.com/jschaefer-io/TaskFlow#readme",
     "devDependencies": {
         "typescript": "^2.8.3"
+    },
+    "dependencies": {
+        "@types/d3": "^5.0.0",
+        "d3": "^5.1.0"
     }
 }
