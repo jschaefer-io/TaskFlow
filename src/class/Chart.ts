@@ -1,6 +1,6 @@
-
-import d3 from 'd3';
 import ChartItem from "./ChartItem"
+
+declare var d3: any;
 
 class Chart{
     private readonly svg: Selection|any;

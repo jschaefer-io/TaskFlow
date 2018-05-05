@@ -8,8 +8,8 @@
         "tsc:w": "tsc -w --pretty",
         "build": "npm run tsc && npm run optim",
         "build-windows": "npm run tsc && npm run optim-windows",
-        "optim": "r.js -o lib.build.js",
-        "optim-windows": "r.js.cmd -o lib.build.js"
+        "optim": "r.js -o tools/lib.build.js",
+        "optim-windows": "r.js.cmd -o tools/lib.build.js"
     },
     "repository": {
         "type": "git",
@@ -22,6 +22,7 @@
     },
     "homepage": "https://github.com/jschaefer-io/TaskFlow#readme",
     "devDependencies": {
+        "almond": "^0.3.3",
         "requirejs": "^2.3.5",
         "typescript": "^2.8.3"
     },
