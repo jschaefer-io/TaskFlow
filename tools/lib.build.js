@@ -8,5 +8,9 @@
         d3: "empty:"
     },
     insertRequire: ['TaskFlow'],
-    removeCombined: true
+    removeCombined: true,
+    wrap: {
+        startFile: "./frag-start.js",
+        endFile: "./frag-end.js"
+    }
 })
