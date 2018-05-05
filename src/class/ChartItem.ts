@@ -19,6 +19,8 @@ abstract class ChartItem{
     protected offset: Coordinate = {x:0,y:0};
     public node: any;
 
+    protected connection: number[] = [0,0,0,0];
+
     protected constructor(selector: string, x: number = 0, y: number = 0){
         this.selector = selector;
         this.position = {x:x,y:y};
@@ -27,6 +29,14 @@ abstract class ChartItem{
     public setOffset(x: number, y: number): void{
         this.offset.x = x;
         this.offset.y = y;
+    }
+
+    public addConnection(side: number){
+        this.connection[side]++;
+    }
+
+    public countConnections(side: number){
+        return this.connection[side];
     }
 
     protected addChildren(name: string , item: ChartItem): void{

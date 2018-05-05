@@ -44,6 +44,9 @@ class ChartConnection extends  ChartItem{
             toConnection = connections[1];
         }
 
+        from.addConnection(fromConnection);
+        target.addConnection(toConnection);
+
 
         let originData: WaypointData = {
             connection: fromConnection,
@@ -120,26 +123,27 @@ class ChartConnection extends  ChartItem{
 
     private static getOrigin(item: ChartItem, side: number): Coordinate{
         const box = item.getBBox();
+        const offset = (item.countConnections(side) - 1) * 5;
         switch (side){
             case ChartConnection.TOP:
                 return {
-                    x: box.x + (box.width / 2),
+                    x: box.x + (box.width / 2) + offset,
                     y: box.y
                 };
             case ChartConnection.RIGHT:
                 return {
                     x: box.x + box.width,
-                    y: box.y + (box.height / 2)
+                    y: box.y + (box.height / 2) + offset
                 };
             case ChartConnection.BOTTOM:
                 return {
-                    x: box.x + (box.width / 2),
+                    x: box.x + (box.width / 2) + offset,
                     y: box.y + box.height
                 };
             default: //  ChartConnection.LEFT
                 return {
                     x: box.x,
-                    y: box.y + (box.height / 2)
+                    y: box.y + (box.height / 2) + offset
                 };
         }
     }
