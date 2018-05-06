@@ -47,6 +47,10 @@ abstract class ChartItem{
         return this.children[name];
     }
 
+    public getElement(){
+        return this.node;
+    }
+
     public getNode(){
         return this.node.node();
     }
