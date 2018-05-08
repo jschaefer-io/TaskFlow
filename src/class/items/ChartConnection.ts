@@ -1,24 +1,8 @@
 import Chart from "../Chart";
 import ChartLine from "./ChartLine";
 import ChartItem from "../ChartItem";
+import {BBox, Coordinate, WaypointData} from '../Interfaces';
 
-export interface BBox {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-}
-
-export interface Coordinate {
-    x: number;
-    y:number;
-}
-
-
-export interface WaypointData{
-    connection: number,
-    point: Coordinate,
-}
 
 class ChartConnection extends  ChartItem{
 

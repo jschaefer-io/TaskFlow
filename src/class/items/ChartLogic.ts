@@ -1,11 +1,7 @@
 
 import Chart from '../Chart';
 import ChartItem from "../ChartItem";
-
-interface Coordinate {
-    x: number;
-    y: number;
-}
+import {Coordinate} from '../Interfaces';
 
 abstract class ChartLogic extends ChartItem{
 

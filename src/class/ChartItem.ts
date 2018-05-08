@@ -1,16 +1,5 @@
 import Chart from "./Chart"
-
-export interface BBox {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-}
-
-export interface Coordinate {
-    x: number;
-    y:number;
-}
+import {Coordinate, BBox} from './Interfaces';
 
 abstract class ChartItem{
     protected selector: string;
