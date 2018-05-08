@@ -4,12 +4,9 @@
     "description": "Interactive Process Mapper",
     "main": "dist/index.js",
     "scripts": {
-        "tsc": "tsc --pretty",
-        "tsc:w": "tsc -w --pretty",
-        "build": "npm run tsc && npm run optim",
-        "build-windows": "npm run tsc && npm run optim-windows",
-        "optim": "r.js -o tools/lib.build.js",
-        "optim-windows": "r.js.cmd -o tools/lib.build.js"
+        "build": "webpack --config tools/config.production.js --progress",
+        "build:standalone": "webpack --config tools/config.standalone.js --progress --standalone",
+        "watch": "webpack --config tools/config.development.js --progress --watch"
     },
     "repository": {
         "type": "git",
@@ -22,12 +19,12 @@
     },
     "homepage": "https://github.com/jschaefer-io/TaskFlow#readme",
     "devDependencies": {
-        "almond": "^0.3.3",
-        "requirejs": "^2.3.5",
-        "typescript": "^2.8.3"
-    },
-    "dependencies": {
         "@types/d3": "^5.0.0",
-        "d3": "^5.1.0"
+        "d3": "^5.1.0",
+        "ts-loader": "^4.3.0",
+        "typescript": "^2.8.3",
+        "webpack": "^4.8.1",
+        "webpack-cli": "^2.1.3",
+        "webpack-merge": "^4.1.2"
     }
 }
