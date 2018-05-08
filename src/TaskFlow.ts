@@ -1,10 +1,3 @@
-// Extend Window Type with TaskFlow-Property
-interface TaskFlowWindow extends Window{
-    TaskFlow: any
-}
-declare const window: TaskFlowWindow;
-
-
 import Chart from "./class/Chart";
 import ChartItem from "./class/ChartItem";
 import ChartConnection from "./class/items/ChartConnection";
@@ -18,22 +11,19 @@ import ChartOr from "./class/items/ChartOr";
 import ChartAnd from "./class/items/ChartAnd";
 
 
-const TaskFlow = {
-    Chart: Chart,
-    Item: {
-        Action: ChartAction,
-        Connection: ChartConnection,
-        Event: ChartEvent,
-        Line: ChartLine,
-        Text: ChartText,
-        Rect: ChartRect,
-        Template: ChartItem
-    },
-    Logic: {
-        Or: ChartOr,
-        And: ChartAnd,
-        Template: ChartLogic
-    }
+const Item = {
+    Action: ChartAction,
+    Connection: ChartConnection,
+    Event: ChartEvent,
+    Line: ChartLine,
+    Text: ChartText,
+    Rect: ChartRect,
+    Template: ChartItem
+};
+const Logic = {
+    Or: ChartOr,
+    And: ChartAnd,
+    Template: ChartLogic
 };
 
-export default TaskFlow;
+export {Chart, Item, Logic};
