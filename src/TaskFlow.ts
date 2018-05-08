@@ -36,6 +36,4 @@ const TaskFlow = {
     }
 };
 
-window.TaskFlow = TaskFlow;
-
 export default TaskFlow;

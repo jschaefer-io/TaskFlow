@@ -4,8 +4,8 @@
     "description": "Interactive Process Mapper",
     "main": "dist/index.js",
     "scripts": {
-        "build": "webpack --config tools/config.production.js --progress",
-        "build:standalone": "webpack --config tools/config.standalone.js --progress --standalone",
+        "build": "webpack --config tools/config.production.js",
+        "build:standalone": "webpack --config tools/config.standalone.js",
         "watch": "webpack --config tools/config.development.js --progress --watch"
     },
     "repository": {
