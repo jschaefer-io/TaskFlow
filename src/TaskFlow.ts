@@ -26,4 +26,7 @@ const Logic = {
     Template: ChartLogic
 };
 
+/**
+ * Main Export
+ */
 export {Chart, Item, Logic};

@@ -1,11 +1,19 @@
-
 import Chart from '../Chart';
 import ChartLogic from "./ChartLogic";
 import ChartLine from "./ChartLine";
 
-abstract class ChartOr extends ChartLogic {
+/**
+ * Logic OR Item
+ */
+class ChartOr extends ChartLogic{
 
-    public constructor(x: number = 0, y: number = 0, size: number = 30) {
+    /**
+     * ChartOr constructor
+     * @param {number} x - x position
+     * @param {number} y - y position
+     * @param {number} size - the items size
+     */
+    public constructor(x: number = 0, y: number = 0, size: number = 30){
         super(x, y, size);
 
         // Top Left Bottom Right
@@ -25,10 +33,6 @@ abstract class ChartOr extends ChartLogic {
             x: this.position.x + this.diag / 2,
             y: this.position.y + this.diag / 2
         }));
-    }
-
-    render(chart: Chart) {
-        return super.render(chart);
     }
 }
 

@@ -3,8 +3,10 @@ import ChartLine from "./ChartLine";
 import ChartItem from "../ChartItem";
 import {BBox, Coordinate, WaypointData} from '../Interfaces';
 
-
-class ChartConnection extends  ChartItem{
+/**
+ * Establishes a connecting line between two ChartItems
+ */
+class ChartConnection extends ChartItem{
 
     private static readonly AUTO: number = -1;
     private static readonly TOP: number = 0;
@@ -15,13 +17,20 @@ class ChartConnection extends  ChartItem{
     private from: ChartItem;
     private target: ChartItem;
 
-    constructor(from: ChartItem, target: ChartItem, fromConnection:number = ChartConnection.AUTO, toConnection:number = ChartConnection.AUTO){
+    /**
+     * ChartConnection constructor
+     * @param {ChartItem} from - Connection origin ChartItem
+     * @param {ChartItem} target - Connection target ChartItem
+     * @param {number} fromConnection - Side of line-attachment for the origin ChartItem (default auto)
+     * @param {number} toConnection - Side of line-attachment for the target ChartItem (default auto)
+     */
+    constructor(from: ChartItem, target: ChartItem, fromConnection: number = ChartConnection.AUTO, toConnection: number = ChartConnection.AUTO){
         super('none');
         this.from = from;
         this.target = target;
 
         let connections: number[] = ChartConnection.calcSites(from.getBBox(), target.getBBox());
-        if (fromConnection == ChartConnection.AUTO){
+        if (fromConnection == ChartConnection.AUTO) {
             fromConnection = connections[0];
         }
         if (toConnection == ChartConnection.AUTO) {
@@ -34,19 +43,25 @@ class ChartConnection extends  ChartItem{
 
         let originData: WaypointData = {
             connection: fromConnection,
-            point: ChartConnection.getOrigin(from,fromConnection)
+            point: ChartConnection.getOrigin(from, fromConnection)
         };
         let targetData: WaypointData = {
             connection: toConnection,
-            point: ChartConnection.getOrigin(target,toConnection)
+            point: ChartConnection.getOrigin(target, toConnection)
         };
 
         const waypoints: Coordinate[] = ChartConnection.getWayoints(originData, targetData);
-        for (let i = 1; i < waypoints.length; i++){
-            this.addChildren('line-' + i, new ChartLine(waypoints[i-1], waypoints[i]));
+        for (let i = 1; i < waypoints.length; i++) {
+            this.addChildren('line-' + i, new ChartLine(waypoints[i - 1], waypoints[i]));
         }
     }
 
+    /**
+     * Gets the Waypoints based on the origin and target data
+     * @param {WaypointData} origin - Describes the origin ChartItem and its position
+     * @param {WaypointData} target - Describes the target ChartItem and its position
+     * @returns {Coordinate[]} - List of Coordinates, which function as waypoints for connecting lines
+     */
     private static getWayoints(origin: WaypointData, target: WaypointData){
         const distX: number = (target.point.x - origin.point.x);
         const distY: number = (target.point.y - origin.point.y);
@@ -60,8 +75,8 @@ class ChartConnection extends  ChartItem{
             y: origin.point.y
         }];
 
-        if (origin.connection === 2 || origin.connection === 0){
-            if (istStraight){
+        if (origin.connection === 2 || origin.connection === 0) {
+            if (istStraight) {
                 waypoints.push({
                     x: origin.point.x,
                     y: origin.point.y + distY / 2
@@ -71,15 +86,15 @@ class ChartConnection extends  ChartItem{
                     y: origin.point.y + distY / 2
                 });
             }
-            else{
+            else {
                 waypoints.push({
                     x: origin.point.x,
                     y: origin.point.y + distY
                 });
             }
         }
-        else{
-            if (istStraight){
+        else {
+            if (istStraight) {
                 waypoints.push({
                     x: origin.point.x + distX / 2,
                     y: origin.point.y
@@ -89,7 +104,7 @@ class ChartConnection extends  ChartItem{
                     y: origin.point.y + distY
                 });
             }
-            else{
+            else {
                 waypoints.push({
                     x: origin.point.x + distX,
                     y: origin.point.y
@@ -105,10 +120,16 @@ class ChartConnection extends  ChartItem{
         return waypoints;
     }
 
+    /**
+     * Calculates the attachment point for ChartItems
+     * @param {ChartItem} item - the ChartItem
+     * @param {number} side - the side, an attachment will be made
+     * @returns {Coordinate} - Coordinate of the attachment-point
+     */
     private static getOrigin(item: ChartItem, side: number): Coordinate{
         const box = item.getBBox();
         const offset = (item.countConnections(side) - 1) * 5;
-        switch (side){
+        switch (side) {
             case ChartConnection.TOP:
                 return {
                     x: box.x + (box.width / 2) + offset,
@@ -132,6 +153,12 @@ class ChartConnection extends  ChartItem{
         }
     }
 
+    /**
+     * Calculates the ideal sides of connection based on the position of both objects
+     * @param {BBox} from - BBox Object describing the origin Object
+     * @param {BBox} target - BBox Object describing the target Object
+     * @returns {number[]} - Side of connection (0 to 3)
+     */
     private static calcSites(from: BBox, target: BBox): number[]{
         const compareWidth: number = (from.x + (from.width / 2)) - (target.x + (target.width / 2));
         const compareHeight: number = (from.y + (from.height / 2)) - (target.y + (target.height / 2));
@@ -140,33 +167,33 @@ class ChartConnection extends  ChartItem{
         let targetConnection: number;
 
 
-        if (compareWidth > compareHeight){
-            if (compareHeight > 0){
+        if (compareWidth > compareHeight) {
+            if (compareHeight > 0) {
                 originConnection = ChartConnection.TOP;
             }
-            else{
+            else {
                 originConnection = ChartConnection.BOTTOM;
             }
 
-            if (compareWidth > 0){
+            if (compareWidth > 0) {
                 targetConnection = ChartConnection.RIGHT;
             }
-            else{
+            else {
                 targetConnection = ChartConnection.LEFT;
             }
         }
-        else{
-            if (compareHeight > 0){
+        else {
+            if (compareHeight > 0) {
                 targetConnection = ChartConnection.BOTTOM;
             }
-            else{
+            else {
                 targetConnection = ChartConnection.TOP;
             }
 
-            if (compareWidth > 0){
+            if (compareWidth > 0) {
                 originConnection = ChartConnection.LEFT;
             }
-            else{
+            else {
                 originConnection = ChartConnection.RIGHT;
             }
         }
@@ -185,10 +212,6 @@ class ChartConnection extends  ChartItem{
         }
 
         return [originConnection, targetConnection];
-    }
-
-    public render(chart: Chart){
-        this.renderChildren(chart);
     }
 }
 

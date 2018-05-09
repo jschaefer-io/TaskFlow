@@ -1,17 +1,39 @@
 import Chart from "../Chart";
 import ChartItem from "../ChartItem";
+import {Coordinate} from "../Interfaces";
 
+/**
+ * Item defining a basic line
+ */
 class ChartLine extends ChartItem{
 
-    private from: { x: number; y: number };
-    private to: { x: number; y: number };
+    /**
+     * Origin point for the line
+     * @type {Coordinate}
+     */
+    private from: Coordinate;
 
-    constructor(from: {x:number, y:number}, to: {x:number, y:number}){
+    /**
+     * Target point for the line
+     * @type {Coordinate}
+     */
+    private to: Coordinate;
+
+    /**
+     * ChartLine constructor
+     * @param {Coordinate} from
+     * @param {Coordinate} to
+     */
+    constructor(from: Coordinate, to: Coordinate){
         super('line');
         this.from = from;
         this.to = to;
     }
 
+    /**
+     * Renders the Line
+     * @param {Chart} chart - the Chart this Item will be appended to
+     */
     public render(chart: Chart){
         this.node = chart.getSvg().append(this.selector)
             .attr('x1', this.from.x)

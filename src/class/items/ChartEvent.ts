@@ -1,8 +1,15 @@
-
 import Chart from '../Chart';
 import ChartRect from './ChartRect';
 
+/**
+ *  Item defining a basic event
+ */
 class ChartEvent extends ChartRect{
+
+    /**
+     * Renders the Event-Item
+     * @param {Chart} chart - the Chart this Item will be appended to
+     */
     render(chart: Chart){
         this.padding = 15;
         super.render(chart)
